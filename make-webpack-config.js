@@ -42,7 +42,8 @@ module.exports = function(options) {
 
     };
     var externals = [
-        {'socket.io': 'io'}
+        {'socket.io': 'io'},
+        {'jQuery': 'jQuery'}
     ];
     var modulesDirectories = ["web_modules", "node_modules"];
     var extensions = ["", ".web.js", ".js", ".jsx"];

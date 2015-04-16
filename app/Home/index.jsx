@@ -12,17 +12,18 @@ module.exports = React.createClass({
     },
     componentWillMount: function() {
         this.socket = io.connect(socketUrl);
-        this.socket.on('query:AVGstatPerMinQuery', (data) => {
-            this.setState({
-                data: data
+    },
+    componentDidMount: function() {
+        if (this.state.data.length === 0) {
+            this.socket.emit('dashboardQuery', {});
+            this.socket.on('dashboardQuery', (data) => {
+                if (this.isMounted()) {
+                    this.setState({
+                        data: data
+                    });
+                }
             });
-        });
-        this.socket.emit('query', {
-            name: 'AVGstatPerMinQuery',
-            stat: 'goldEarned',
-            region: 'NA',
-            sort: 'DESC'
-        });
+        }
     },
     render: function() {
         return <MyComponent
@@ -39,12 +40,12 @@ var MyComponent = React.createClass({
     },
     render: function() {
         var data = this.props.data;
-        var list = data.map((d) =>
-            <li className="collection-item avatar" style={{paddingTop: '21'}}>
+        var list = data.map((d, i) =>
+            <li key={i} className="collection-item avatar" style={{paddingTop: '21'}}>
               <SquareImage champion={d.championName} size={'42'} circle={true}></SquareImage>
               <span className="title">{d.championName}</span>
               <p>
-                {d.goldEarnedPM}
+                {d.games}
               </p>
             </li>
         );
