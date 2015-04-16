@@ -3,6 +3,13 @@ import {socketUrl} from '../const';
 var io = require('socket.io');
 var cx = require('classnames');
 var SquareImage = require('../Components/SquareImage');
+var Griddle = require('griddle-react');
+import {dashboardColumnsData} from '../Components/DashboardData';
+import _ from 'lodash';
+
+function pluckAll(objects, arr) {
+    return _.map(objects,_.partialRight(_.pick, arr));
+}
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -26,13 +33,19 @@ module.exports = React.createClass({
         }
     },
     render: function() {
-        return <MyComponent
-            data={this.state.data}
+        var columnsToShow = [
+            'championName','games','bans','matchDuration','winner',
+            'kills','deaths','assists',
+            'champLevel','goldEarned'
+        ];
+        var filteredData = pluckAll(this.state.data, columnsToShow);
+        return <GriddleWrapper columns={columnsToShow}
+            data={filteredData}
         />;
     }
 });
 
-var MyComponent = React.createClass({
+var GriddleWrapper = React.createClass({
     getDefaultProps: function() {
         return {
             data: []
@@ -40,19 +53,16 @@ var MyComponent = React.createClass({
     },
     render: function() {
         var data = this.props.data;
-        var list = data.map((d, i) =>
-            <li key={i} className="collection-item avatar" style={{paddingTop: '21'}}>
-              <SquareImage champion={d.championName} size={'42'} circle={true}></SquareImage>
-              <span className="title">{d.championName}</span>
-              <p>
-                {d.games}
-              </p>
-            </li>
-        );
+        var columns = this.props.columns;
         return (
-            <ul className="collection">
-                {list}
-            </ul>
+            <Griddle
+                columns={columns}
+                columnMetadata={dashboardColumnsData}
+                filterPlaceholderText={'Filter by Champion Name here...'}
+                results={data}
+                resultsPerPage={20}
+                showFilter={true}
+            />
         );
     }
 });
