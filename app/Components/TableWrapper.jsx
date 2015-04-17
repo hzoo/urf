@@ -9,7 +9,7 @@ var io = require('socket.io');
 require('fixed-data-table/dist/fixed-data-table.min.css');
 
 import SquareImage from './SquareImage.jsx';
-import AverageComponent from '../Components/AverageComponent.jsx';
+import NumericComponent from '../Components/NumericComponent.jsx';
 
 const ImageWrapper = React.createClass({
     render: function() {
@@ -31,8 +31,8 @@ const SortTypes = {
     DESC: 'DESC',
 };
 
-const renderAverageComponent = (data, key, rowData) => {
-    return <AverageComponent data={data} games={rowData.games} />;
+const renderNumericComponent = (data, key, rowData) => {
+    return <NumericComponent data={data} games={rowData.games} />;
 };
 
 // https://github.com/facebook/fixed-data-table/issues/67
@@ -48,15 +48,13 @@ var TableWrapper = React.createClass({
     },
     componentWillMount: function() {
         // http://stackoverflow.com/a/29472605
-        this.socket = io.connect(null, {
-            transports: ['websocket']
-        });
+        this.socket = io();
         this._filterRowsBy(this.state.filterBy);
     },
     componentDidMount: function() {
         if (this.state.rows.length === 0) {
-            this.socket.emit('dashboardQuery', {});
-            this.socket.on('dashboardQuery', (res) => {
+            this.socket.emit('c:dashboardQuery', {});
+            this.socket.on('s:dashboardQuery', (res) => {
                 if (this.isMounted()) {
                     this.setState({
                         rows: res
@@ -166,51 +164,63 @@ var TableWrapper = React.createClass({
                     />
                     <Column
                         headerRenderer={this._renderHeader}
-                        label={'Wins' + (this.state.sortBy === 'winner' ? sortDirArrow : '')}
+                        label={'Win %' + (this.state.sortBy === 'winner' ? sortDirArrow : '')}
                         width={100}
                         dataKey='winner'
                     />
                     <Column
-                        cellRenderer={renderAverageComponent}
                         headerRenderer={this._renderHeader}
                         label={'AVG Time' + (this.state.sortBy === 'matchDuration' ? sortDirArrow : '')}
                         width={100}
                         dataKey='matchDuration'
                     />
                     <Column
-                        cellRenderer={renderAverageComponent}
                         headerRenderer={this._renderHeader}
                         label={'AVG Kills' + (this.state.sortBy === 'kills' ? sortDirArrow : '')}
                         width={100}
                         dataKey='kills'
                     />
                     <Column
-                        cellRenderer={renderAverageComponent}
                         headerRenderer={this._renderHeader}
                         label={'AVG Deaths' + (this.state.sortBy === 'deaths' ? sortDirArrow : '')}
-                        width={100}
+                        width={110}
                         dataKey='deaths'
                     />
                     <Column
-                        cellRenderer={renderAverageComponent}
                         headerRenderer={this._renderHeader}
                         label={'AVG Assists' + (this.state.sortBy === 'assists' ? sortDirArrow : '')}
-                        width={100}
+                        width={115}
                         dataKey='assists'
                     />
                     <Column
-                        cellRenderer={renderAverageComponent}
                         headerRenderer={this._renderHeader}
                         label={'AVG Level' + (this.state.sortBy === 'champLevel' ? sortDirArrow : '')}
                         width={100}
                         dataKey='champLevel'
                     />
                     <Column
-                        cellRenderer={renderAverageComponent}
                         headerRenderer={this._renderHeader}
                         label={'AVG Gold' + (this.state.sortBy === 'goldEarned' ? sortDirArrow : '')}
-                        width={100}
+                        width={95}
                         dataKey='goldEarned'
+                    />
+                    <Column
+                        headerRenderer={this._renderHeader}
+                        label={'AVG CS' + (this.state.sortBy === 'minionsKilled' ? sortDirArrow : '')}
+                        width={85}
+                        dataKey='minionsKilled'
+                    />
+                    <Column
+                        headerRenderer={this._renderHeader}
+                        label={'AVG Towers' + (this.state.sortBy === 'towerKills' ? sortDirArrow : '')}
+                        width={115}
+                        dataKey='towerKills'
+                    />
+                    <Column
+                        headerRenderer={this._renderHeader}
+                        label={'AVG Inhibs' + (this.state.sortBy === 'inhibitorKills' ? sortDirArrow : '')}
+                        width={110}
+                        dataKey='inhibitorKills'
                     />
                 </Table>
             </div>

@@ -2,9 +2,9 @@ var React = require('react');
 const $ = require('jQuery');
 const numAbbr = require('number-abbreviate')(['k','m']);
 
-const AverageComponent = React.createClass({
+const NumericComponent = React.createClass({
   componentDidMount: function() {
-       $('.tooltipped').tooltip({delay: 50});
+       $(`.tooltipped${this.props.data}`).tooltip({delay: 50});
   },
   render: function(){
     var style = {
@@ -22,7 +22,7 @@ const AverageComponent = React.createClass({
         return <div style={style}>{average}</div>;
     } else {
         return (
-            <div className="tooltipped"
+            <div className={`tooltipped${this.props.data}`}
                 style={style}
                 data-position="right"
                 data-delay="50"
@@ -34,4 +34,4 @@ const AverageComponent = React.createClass({
   }
 });
 
-module.exports = AverageComponent;
+module.exports = NumericComponent;

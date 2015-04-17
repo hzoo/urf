@@ -12,18 +12,16 @@ var Champions = React.createClass({
         };
     },
     componentWillMount: function() {
-        this.socket = io.connect(null, {
-            transports: ['websocket']
-        });
+        this.socket = io.connect();
     },
     componentDidMount: function() {
-        this.socket.emit('singleQuery', {
+        this.socket.emit('c:singleQuery', {
             name: 'AVGstatPerMinQuery',
             stat: 'goldEarned',
             region: 'NA',
             sort: 'DESC'
         });
-        this.socket.on('singleQuery:AVGstatPerMinQuery', (data) => {
+        this.socket.on('s:singleQuery:AVGstatPerMinQuery', (data) => {
             if (this.isMounted()) {
                 this.setState({
                     data: data
