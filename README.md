@@ -3,7 +3,7 @@
 URF statistics. (There is another project to fetch data)
 
 - Using [webpack/react-starter](https://github.com/webpack/react-starter) (without prerender, flux, etc)
-    + react, es6 (babel)
+    + react, es6 (babel), materialize/normalize.css
 - MySQL db, socket.io
 - Heroku
 
@@ -52,3 +52,10 @@ http://localhost:8081/
 ## Code
 - All application code is in `app/`
 - Server code in `lib/`
+
+#### Stopped using (due to lack of time, knowledge, and frustration)
+- Firebase (good for initial test) -> MySQL
+- Mongodb - not enough experience -> MySQL -> Cloud SQL
+- Flux -> nothing
+- jsbin/fiddle (testing) -> a lot of react-hot-loader starter kits -> webpack/react-starter
+- [Griddle](https://griddlegriddle.github.io/Griddle/) and a lot from http://react.rocks/tag/DataTable -> Fixed-Data-Table (fast, customizable)

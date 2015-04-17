@@ -7,7 +7,10 @@ const AverageComponent = React.createClass({
        $('.tooltipped').tooltip({delay: 50});
   },
   render: function(){
-    var average = (this.props.data / this.props.rowData.games);
+    var style = {
+        padding: '8'
+    };
+    var average = (this.props.data / this.props.games);
     if (average < 1000) {
         average = average.toFixed(2);
     } else if (average < 1000000) {
@@ -16,15 +19,16 @@ const AverageComponent = React.createClass({
     var abbreviated = numAbbr.abbreviate(average, 2);
 
     if (average === abbreviated) {
-        return <span>{average}</span>;
+        return <div style={style}>{average}</div>;
     } else {
         return (
-            <span className="tooltipped"
-                data-position="top"
+            <div className="tooltipped"
+                style={style}
+                data-position="right"
                 data-delay="50"
                 data-tooltip={average}>
                 {abbreviated}
-            </span>
+            </div>
         );
     }
   }

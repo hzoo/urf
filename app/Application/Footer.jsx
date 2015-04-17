@@ -25,7 +25,6 @@ const Footer = React.createClass({
                    <ul>
                      <li><a className="grey-text text-lighten-3" href="http://www.champion.gg/">champion.gg </a></li>
                      <li><a className="grey-text text-lighten-3" href="http://www.probuilds.net/">Pro Builds</a></li>
-                     <li><a className="grey-text text-lighten-3" href="http://www.op.gg/">OP.gg</a></li>
                    </ul>
                  </div>
                </div>

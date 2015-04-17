@@ -66,18 +66,16 @@ const MainMenu = React.createClass({
                         <i className="mdi-navigation-menu"></i>
                     </a>
                     <ul className="right hide-on-med-and-down">
-                      <li onClick={this.searchHandler}>Search</li>
-                      <li><Link to="champions">Champions</Link></li>
+                      <li onClick={this.searchHandler}>Search&nbsp;</li>
                     </ul>
                     <ul className="side-nav" id="mobile-demo">
-                      <li><a onClick={this.searchHandler}>Search</a></li>
-                      <li><Link to="champions">Champions</Link></li>
+                      <li><a onClick={this.searchHandler}>Search&nbsp;</a></li>
                     </ul>
                 </span>
             );
         }
         return (
-            <div className="navbar-fixed">
+            <div className="">
                 <nav>
                   <div className="nav-wrapper">
                     {navContent}
