@@ -2,6 +2,7 @@ var React = require('react');
 var FixedDataTable = require('fixed-data-table');
 var Table = FixedDataTable.Table;
 var Column = FixedDataTable.Column;
+var _ = require('lodash');
 
 import {socketUrl, championNames} from '../const';
 var io = require('socket.io');
@@ -35,6 +36,10 @@ const renderNumericComponent = (data, key, rowData) => {
     return <NumericComponent data={data} games={rowData.games} />;
 };
 
+const pluckAll = (array, props) => {
+    return _.map(array, function(obj) { return _.pick(obj, ...props); });
+};
+
 // https://github.com/facebook/fixed-data-table/issues/67
 var TableWrapper = React.createClass({
     getInitialState: function() {
@@ -56,8 +61,12 @@ var TableWrapper = React.createClass({
             this.socket.emit('c:dashboardQuery', {});
             this.socket.on('s:dashboardQuery', (res) => {
                 if (this.isMounted()) {
+
+                    var metaData = this.props.table;
+                    var filteredResult = pluckAll(res, _.pluck(metaData, 'datakey'));
+
                     this.setState({
-                        rows: res
+                        rows: filteredResult
                     }, function() {
                         this._filterRowsBy(this.state.filterBy);
                     });
@@ -121,7 +130,33 @@ var TableWrapper = React.createClass({
     },
     render: function() {
         var sortDirArrow = this.state.sortDir === SortTypes.DESC ? ' ↓' : ' ↑';
-        var numGames = this.state.filteredRows[0]
+        var numGames = this.state.filteredRows[0];
+
+        var table = (
+            <Table
+                rowHeight={50}
+                headerHeight={40}
+                rowGetter={this._rowGetter}
+                rowsCount={this.state.filteredRows.length}
+                width={1280}
+                height={720}>
+                {this.props.table.map((column) => {
+                    var createImage = (data) => <ImageWrapper data={data} />;
+                    var image = column.image ? createImage : null;
+                    return (
+                        <Column
+                            cellRenderer={image}
+                            headerRenderer={this._renderHeader}
+                            label={column.label + (this.state.sortBy === column.dataKey ? sortDirArrow : '')}
+                            fixed={column.fixed}
+                            width={column.width}
+                            dataKey={column.datakey}
+                        />
+                    );
+                })}
+            </Table>
+        );
+
         return (
             <div>
                 <div className="col s12" style={{padding: '8', paddingBottom: '0'}}>
@@ -134,95 +169,7 @@ var TableWrapper = React.createClass({
                         <label htmlFor="icon_prefix">Filter by Champion</label>
                     </div>
                 </div>
-                <Table
-                    rowHeight={50}
-                    rowGetter={this._rowGetter}
-                    rowsCount={this.state.filteredRows.length}
-                    overflowX="hidden"
-                    width={1920}
-                    height={800}
-                    headerHeight={40}>
-                    <Column
-                        cellRenderer={(data) => <ImageWrapper data={data} />}
-                        headerRenderer={this._renderHeader}
-                        label={'Champion' + (this.state.sortBy === 'championName' ? sortDirArrow : '')}
-                        fixed={true}
-                        width={140}
-                        dataKey='championName'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'Games' + (this.state.sortBy === 'games' ? sortDirArrow : '')}
-                        width={100}
-                        dataKey='games'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'Bans' + (this.state.sortBy === 'bans' ? sortDirArrow : '')}
-                        width={100}
-                        dataKey='bans'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'Win %' + (this.state.sortBy === 'winner' ? sortDirArrow : '')}
-                        width={100}
-                        dataKey='winner'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'AVG Time' + (this.state.sortBy === 'matchDuration' ? sortDirArrow : '')}
-                        width={100}
-                        dataKey='matchDuration'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'AVG Kills' + (this.state.sortBy === 'kills' ? sortDirArrow : '')}
-                        width={100}
-                        dataKey='kills'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'AVG Deaths' + (this.state.sortBy === 'deaths' ? sortDirArrow : '')}
-                        width={110}
-                        dataKey='deaths'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'AVG Assists' + (this.state.sortBy === 'assists' ? sortDirArrow : '')}
-                        width={115}
-                        dataKey='assists'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'AVG Level' + (this.state.sortBy === 'champLevel' ? sortDirArrow : '')}
-                        width={100}
-                        dataKey='champLevel'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'AVG Gold' + (this.state.sortBy === 'goldEarned' ? sortDirArrow : '')}
-                        width={95}
-                        dataKey='goldEarned'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'AVG CS' + (this.state.sortBy === 'minionsKilled' ? sortDirArrow : '')}
-                        width={85}
-                        dataKey='minionsKilled'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'AVG Towers' + (this.state.sortBy === 'towerKills' ? sortDirArrow : '')}
-                        width={115}
-                        dataKey='towerKills'
-                    />
-                    <Column
-                        headerRenderer={this._renderHeader}
-                        label={'AVG Inhibs' + (this.state.sortBy === 'inhibitorKills' ? sortDirArrow : '')}
-                        width={110}
-                        dataKey='inhibitorKills'
-                    />
-                </Table>
+                {table}
             </div>
         );
     }

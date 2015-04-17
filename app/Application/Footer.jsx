@@ -12,23 +12,13 @@ const Footer = React.createClass({
     render: function() {
         return (
             <footer className="page-footer">
-             <div className="container">
-               <div className="row">
-                 <div className="col l6 s12">
-                   <h5 className="white-text">{title}</h5>
-                   <p className="grey-text text-lighten-4">Created for the&nbsp;
-                    <b><a className="grey-text text-lighten-3" href={riotAPILink}>Riot Games API Challenge.</a></b>
-                   </p>
-                 </div>
-               </div>
-             </div>
-             <div className="footer-copyright">
-               <div className="container">
-               © 2015 <b><a className="grey-text text-lighten-4" href={githubLink}>Henry Zhu</a></b>
-               <a className="grey-text text-lighten-4 right" href={moreLolLink}>Other Links</a>
-               </div>
-             </div>
-           </footer>
+                <div className="footer-copyright">
+                    <div className="container">
+                        © 2015 <b><a className="grey-text text-lighten-4" href={githubLink}>Henry Zhu</a></b>
+                        <a className="grey-text text-lighten-4 right" href={riotAPILink}>for the Riot Games API Challenge</a>
+                    </div>
+                </div>
+            </footer>
         );
     }
 });
