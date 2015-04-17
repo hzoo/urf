@@ -12,7 +12,9 @@ var Champions = React.createClass({
         };
     },
     componentWillMount: function() {
-        this.socket = io.connect(socketUrl);
+        this.socket = io.connect(null, {
+            transports: ['websocket']
+        });
     },
     componentDidMount: function() {
         this.socket.emit('singleQuery', {

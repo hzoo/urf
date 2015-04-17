@@ -2,6 +2,8 @@
 
 URF statistics. (There is another project to fetch data)
 
+![](screenshot.png)
+
 - Using [webpack/react-starter](https://github.com/webpack/react-starter) (without prerender, flux, etc)
     + react, es6 (babel), materialize/normalize.css
 - MySQL db, socket.io

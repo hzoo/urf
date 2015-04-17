@@ -40,14 +40,17 @@ var TableWrapper = React.createClass({
     getInitialState: function() {
         return {
             rows: [],
-            sortBy: 'year',
-            sortDir: SortTypes.DESC,
+            sortBy: 'championName',
+            sortDir: SortTypes.ASC,
             filteredRows: null,
             filterBy: null
         };
     },
     componentWillMount: function() {
-        this.socket = io();
+        // http://stackoverflow.com/a/29472605
+        this.socket = io.connect(null, {
+            transports: ['websocket']
+        });
         this._filterRowsBy(this.state.filterBy);
     },
     componentDidMount: function() {
