@@ -4,13 +4,13 @@ export const urls = {
     base: 'http://ddragon.leagueoflegends.com/cdn/',
     version: '5.6.2',
     splash: function(championName, num) {
-        return urls.base + 'img/champion/splash/' + championName + '_' + (num || 0) + '.jpg';
+        return `${urls.base}img/champion/splash/${toTitleCase(championName)}_${num || 0}.jpg`;
     },
     loading: function(championName, num) {
-        return urls.base + 'img/champion/loading/' + championName + '_' + (num || 0) + '.jpg';
+        return `${urls.base}img/champion/loading/${toTitleCase(championName)}_${num || 0}.jpg`;
     },
     square: function(championName) {
-        return urls.base + urls.version + '/img/champion/' + championName + '.png';
+        return `${urls.base}${urls.version}/img/champion/${championName}.png`;
     },
     matchDetails: function(region, matchId) {
         if (region === 'EUNE') region = 'EUN';

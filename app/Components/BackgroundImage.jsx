@@ -4,7 +4,7 @@ import {urls} from '../const';
 const BackgroundImage = React.createClass({
   render: function() {
     const championName = this.props.champion;
-    const imgUrl = urls.splash(championName, 1);
+    const imgUrl = urls.splash(championName, this.props.image || 1);
     const divStyle = {
       background: 'url(' + imgUrl + ') ' + 'no-repeat center center fixed',
       backgroundSize: 'cover',

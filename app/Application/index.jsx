@@ -6,11 +6,13 @@ var Footer = require("./Footer.jsx");
 require("./style.css");
 
 var Application = React.createClass({
+    componentDidMount: function() {
+         React.render(<Footer />, document.getElementById("contentFooter"));
+    },
     render: function() {
         return <div>
             <MainMenu />
             <RouteHandler />
-            <Footer />
         </div>;
     }
 });

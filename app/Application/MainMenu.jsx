@@ -19,7 +19,6 @@ const MainMenu = React.createClass({
             searching: !this.state.searching
         }, function() {
             this.context.router.transitionTo(`/champions/${name}`);
-            // this.context.router.transitionTo('champions', { champion: name });
         });
     },
     searchHandler: function() {
@@ -75,7 +74,7 @@ const MainMenu = React.createClass({
             );
         }
         return (
-            <div className="">
+            <div>
                 <nav>
                   <div className="nav-wrapper">
                     {navContent}
