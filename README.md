@@ -1,22 +1,21 @@
 # URF
 
-URF statistics. (There is another project to fetch data)
+URF Statistics. ([hzoo/geturf](https://github.com/hzoo/geturf) fetches data)
 
 ![](screenshot.png)
 
-- Using [webpack/react-starter](https://github.com/webpack/react-starter) (without prerender, flux, etc)
-    + react, es6 (babel), materialize/normalize.css
-- MySQL db, socket.io
-- Heroku
 
 ## Install
+- io.js, MySQL 5.6
+- Using [webpack/react-starter](https://github.com/webpack/react-starter) (without prerender, flux, etc)
+    + react, es6 (babel), socket.io, materialize/normalize.css
 ```text
 # check package.json
 npm install
 ```
 
 ## Config
-- Create a json file at `lib/config.json` to connect to your database
+- Create a json file at `lib/config.json` to connect to your database (or local database)
 ```json
 {
     "DB_HOST": "",
@@ -53,11 +52,15 @@ http://localhost:8081/
 
 ## Code
 - All application code is in `app/`
+    + `app/simple.html` gets some external files.
+    + 
 - Server code in `lib/`
+    + `lib/query.js` has some of the SQL queries.
+    + `lib/server.js` has socket.io code.
 
 #### Stopped using (due to lack of time, knowledge, and frustration)
 - Firebase (good for initial test) -> MySQL
 - Mongodb - not enough experience -> MySQL -> Cloud SQL
 - Flux -> nothing
 - jsbin/fiddle (testing) -> a lot of react-hot-loader starter kits -> webpack/react-starter
-- [Griddle](https://griddlegriddle.github.io/Griddle/) and a lot from http://react.rocks/tag/DataTable -> Fixed-Data-Table (fast, customizable)
+- [Griddle](https://griddlegriddle.github.io/Griddle/) and many others from http://react.rocks/tag/DataTable -> Fixed-Data-Table (fast, customizable)
