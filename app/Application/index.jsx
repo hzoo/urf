@@ -5,13 +5,16 @@ var Footer = require("./Footer.jsx");
 
 require("./style.css");
 
+const randNum = Math.floor(Math.random() * 2);
+const randColor = randNum === 1 ? 'purple' : 'blue';
+
 var Application = React.createClass({
     componentDidMount: function() {
-         React.render(<Footer />, document.getElementById("contentFooter"));
+         React.render(<Footer color={randColor}/>, document.getElementById("contentFooter"));
     },
     render: function() {
         return <div>
-            <MainMenu />
+            <MainMenu color={randColor}/>
             <RouteHandler />
         </div>;
     }

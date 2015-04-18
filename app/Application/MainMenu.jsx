@@ -33,7 +33,7 @@ const MainMenu = React.createClass({
         );
         return (
             <div>
-                <nav>
+                <nav className={`darken-1 ${this.props.color}`}>
                   <div className="nav-wrapper">
                     {navContent}
                   </div>

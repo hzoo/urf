@@ -10,8 +10,9 @@ const githubLink = 'https://github.com/hzoo/urf';
 const Footer = React.createClass({
     mixins: [PureRenderMixin],
     render: function() {
+        var classes = `page-footer darken-1 ${this.props.color}`;
         return (
-            <footer className="page-footer">
+            <footer className={classes}>
                 <div className="footer-copyright">
                     <div className="container">
                         by <b><a className="grey-text text-lighten-4" href={githubLink}>Henry Zhu</a></b>
