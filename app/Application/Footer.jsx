@@ -1,5 +1,5 @@
 const React = require("react");
-var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
+const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 const Link = require("react-router").Link;
 import {title} from '../const';
 
@@ -10,7 +10,8 @@ const githubLink = 'https://github.com/hzoo/urf';
 const Footer = React.createClass({
     mixins: [PureRenderMixin],
     render: function() {
-        var classes = `page-footer darken-1 ${this.props.color}`;
+        const color = this.props.color;
+        const classes = `page-footer darken-1 ${color}`;
         return (
             <footer className={classes}>
                 <div className="footer-copyright">

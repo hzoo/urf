@@ -1,14 +1,13 @@
-var React = require("react");
-var RouteHandler = require("react-router").RouteHandler;
-var MainMenu = require("./MainMenu.jsx");
-var Footer = require("./Footer.jsx");
-
+const React = require("react");
+const RouteHandler = require("react-router").RouteHandler;
+const MainMenu = require("./MainMenu.jsx");
+const Footer = require("./Footer.jsx");
 require("./style.css");
 
 const randNum = Math.floor(Math.random() * 2);
 const randColor = randNum === 1 ? 'purple' : 'blue';
 
-var Application = React.createClass({
+const Application = React.createClass({
     componentDidMount: function() {
          React.render(<Footer color={randColor}/>, document.getElementById("contentFooter"));
     },

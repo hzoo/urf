@@ -1,16 +1,10 @@
 var React = require('react');
-var TableWrapper = require('../Components/TableWrapper');
-var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
-
-import {urls, numSkins, championNames} from '../const';
-var SquareImage = require('../Components/SquareImage');
-
+const SquareImage = require('../Components/SquareImage');
+const TableWrapper = require('../Components/TableWrapper');
+import {rand, urls, numSkins, championNames} from '../const';
 import {mostXData} from './Data';
 
-const rand = num => Math.floor(Math.random() * (num - 1));
-
 const Card = React.createClass({
-    mixins: [PureRenderMixin],
     render: function() {
         const championName = String(this.props.data[0][0]);
         const statName = String(this.props.stat);
@@ -58,15 +52,6 @@ const Card = React.createClass({
         );
     }
 });
-
-// mostX(kills, 'DESC')
-const mostX = (stat, sort) => `
-    SELECT championName, players.${stat} as stat, players.matchId, players.region
-    FROM players, champions
-    WHERE players.championId = champions.championId
-    ORDER BY stat ${sort}
-    LIMIT 10
-`;
 
 module.exports = React.createClass({
     render: function() {

@@ -1,8 +1,10 @@
 const React = require('react');
+const cx = require('classnames');
+const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 import {urls} from '../const';
-var cx = require('classnames');
 
 const SquareImage = React.createClass({
+  mixins: [PureRenderMixin],
   render: function() {
     const championName = this.props.champion;
     const itemId = this.props.item;

@@ -1,8 +1,7 @@
-var React = require('react');
+const React = require('react');
+const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
+const BackgroundImage = require('../Components/BackgroundImage');
 import {urls} from '../const';
-var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
-
-var BackgroundImage = require('../Components/BackgroundImage');
 
 module.exports = React.createClass({
     mixins: [PureRenderMixin],

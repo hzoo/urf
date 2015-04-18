@@ -1,17 +1,16 @@
 const React = require("react");
-import {title} from '../const';
 const Link = require("react-router").Link;
-var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
+import {title} from '../const';
 
 const MainMenu = React.createClass({
-    mixins: [PureRenderMixin],
     componentDidMount: function() {
          $(".button-collapse").sideNav({
              closeOnClick: true
          });
     },
     render: function() {
-        var navContent = (
+        const color = this.props.color;
+        const navContent = (
             <span>
                 <Link to="home" className="brand-logo">
                     <span>&nbsp;{title}</span>
@@ -33,7 +32,7 @@ const MainMenu = React.createClass({
         );
         return (
             <div>
-                <nav className={`darken-1 ${this.props.color}`}>
+                <nav className={`darken-1 ${color}`}>
                   <div className="nav-wrapper">
                     {navContent}
                   </div>

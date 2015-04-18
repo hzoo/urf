@@ -1,15 +1,13 @@
-var React = require('react');
-var FixedDataTable = require('fixed-data-table');
-var Table = FixedDataTable.Table;
-var Column = FixedDataTable.Column;
-var _ = require('lodash');
-
-import {socketUrl, championNames} from '../const';
-var io = require('socket.io');
+const React = require('react');
+const FixedDataTable = require('fixed-data-table');
+const Table = FixedDataTable.Table;
+const Column = FixedDataTable.Column;
+const _ = require('lodash');
+const io = require('socket.io');
+import {championNames} from '../const';
+import SquareImage from './SquareImage.jsx';
 
 require('fixed-data-table/dist/fixed-data-table.min.css');
-
-import SquareImage from './SquareImage.jsx';
 
 const ImageWrapper = React.createClass({
     render: function() {
@@ -36,7 +34,7 @@ const pluckAll = (array, props) => {
 };
 
 // https://github.com/facebook/fixed-data-table/issues/67
-var TableWrapper = React.createClass({
+const TableWrapper = React.createClass({
     getInitialState: function() {
         return {
             rows: [],

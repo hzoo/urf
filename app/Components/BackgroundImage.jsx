@@ -1,7 +1,9 @@
 const React = require('react');
+const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 import {urls} from '../const';
 
 const BackgroundImage = React.createClass({
+  mixins: [PureRenderMixin],
   render: function() {
     const championName = this.props.champion;
     const imgUrl = urls.splash(championName, this.props.image || 1);

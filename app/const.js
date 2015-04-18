@@ -1,4 +1,4 @@
-export const socketUrl = '//localhost:8080';
+export const rand = num => Math.floor(Math.random() * (num - 1));
 export const title = 'URF Stats';
 export const urls = {
     base: 'http://ddragon.leagueoflegends.com/cdn/',

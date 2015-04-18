@@ -1,12 +1,9 @@
-var React = require('react');
-var TableWrapper = require('../Components/TableWrapper');
-var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
-
-import {urls, numSkins, championNames} from '../const';
+const React = require('react');
+const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
+const TableWrapper = require('../Components/TableWrapper');
+const SquareImage = require('../Components/SquareImage');
+import {rand, urls, numSkins, championNames} from '../const';
 import {miscItemsData} from './Data';
-var SquareImage = require('../Components/SquareImage');
-
-const rand = num => Math.floor(Math.random() * (num - 1));
 
 const Card = React.createClass({
     mixins: [PureRenderMixin],
