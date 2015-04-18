@@ -69,6 +69,9 @@ var TableWrapper = React.createClass({
 
                     filteredResult.forEach((r) => {
                         r.relevance =  Number(((r.games + r.bans) / TOTAL_GAMES * 100).toFixed(2));
+                        r.matchDuration = Math.floor(r.matchDuration);
+                        r.largestCriticalStrike = Math.floor(r.largestCriticalStrike);
+                        r.totalTimeCrowdControlDealt = Math.floor(r.totalTimeCrowdControlDealt);
                     });
 
                     this.setState({
@@ -142,7 +145,7 @@ var TableWrapper = React.createClass({
             <Table
 
                 rowHeight={50}
-                headerHeight={40}
+                headerHeight={50}
                 rowGetter={this._rowGetter}
                 rowsCount={this.state.filteredRows.length}
                 width={1280}
