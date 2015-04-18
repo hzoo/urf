@@ -32,8 +32,6 @@ const SortTypes = {
     DESC: 'DESC',
 };
 
-const TOTAL_GAMES = 183087;
-
 const renderNumericComponent = (data, key, rowData) => {
     return <NumericComponent data={data} games={rowData.games} />;
 };
@@ -68,7 +66,6 @@ var TableWrapper = React.createClass({
                     var filteredResult = pluckAll(res, _.pluck(metaData, 'dataKey'));
 
                     filteredResult.forEach((r) => {
-                        r.relevance =  Number(((r.games + r.bans) / TOTAL_GAMES * 100).toFixed(2));
                         r.matchDuration = Math.floor(r.matchDuration);
                         r.largestCriticalStrike = Math.floor(r.largestCriticalStrike);
                         r.totalTimeCrowdControlDealt = Math.floor(r.totalTimeCrowdControlDealt);

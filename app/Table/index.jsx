@@ -16,10 +16,6 @@ var tableMetaData = [{
     label: 'Bans',
     width: 100
 }, {
-    dataKey: 'relevance',
-    label: 'Pick/Ban %',
-    width: 110
-}, {
     dataKey: 'winner',
     label: 'Win %',
     width: 100
