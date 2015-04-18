@@ -32,6 +32,8 @@ const SortTypes = {
     DESC: 'DESC',
 };
 
+const TOTAL_GAMES = 183087;
+
 const renderNumericComponent = (data, key, rowData) => {
     return <NumericComponent data={data} games={rowData.games} />;
 };
@@ -63,7 +65,11 @@ var TableWrapper = React.createClass({
                 if (this.isMounted()) {
 
                     var metaData = this.props.table;
-                    var filteredResult = pluckAll(res, _.pluck(metaData, 'datakey'));
+                    var filteredResult = pluckAll(res, _.pluck(metaData, 'dataKey'));
+
+                    filteredResult.forEach((r) => {
+                        r.relevance =  Number(((r.games + r.bans) / TOTAL_GAMES * 100).toFixed(2));
+                    });
 
                     this.setState({
                         rows: filteredResult
@@ -134,7 +140,7 @@ var TableWrapper = React.createClass({
 
         var table = (
             <Table
-                style={{margin: 'auto'}}
+
                 rowHeight={50}
                 headerHeight={40}
                 rowGetter={this._rowGetter}
@@ -152,7 +158,7 @@ var TableWrapper = React.createClass({
                             label={column.label + (this.state.sortBy === column.dataKey ? sortDirArrow : '')}
                             fixed={column.fixed}
                             width={column.width}
-                            dataKey={column.datakey}
+                            dataKey={column.dataKey}
                         />
                     );
                 })}
@@ -171,7 +177,9 @@ var TableWrapper = React.createClass({
                         <label htmlFor="icon_prefix">Filter by Champion</label>
                     </div>
                 </div>
-                {table}
+                <div style={{margin: 'auto', width: '1280'}}>
+                    {table}
+                </div>
             </div>
         );
     }

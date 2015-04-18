@@ -143,7 +143,20 @@ const cards = [
     }
 ];
 
+const CardPanel = React.createClass({
+    mixins: [PureRenderMixin],
+    render: function() {
+        return (
+            <div className="card-panel teal">
+              <span className="white-text">
+                {this.props.text}
+              </span>
+            </div>
+        );
+    }
+});
 
+const cardPanels = [];
 
 module.exports = React.createClass({
     render: function() {
@@ -151,6 +164,9 @@ module.exports = React.createClass({
             <div>
                 {cards.map((card, i) => {
                     return <Card key={i} stat={card.stat} titleImage={card.titleImage} data={card.data} />;
+                })}
+                {cardPanels.map((card, i) => {
+                    return <CardPanel key={i} text={card.text} />;
                 })}
             </div>
         );

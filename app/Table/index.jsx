@@ -2,57 +2,61 @@ var React = require('react');
 var TableWrapper = require('../Components/TableWrapper');
 
 var tableMetaData = [{
-    datakey: 'championName',
+    dataKey: 'championName',
     label: 'Champion',
     width: 140,
     fixed: true,
     image: true
 }, {
-    datakey: 'games',
-    label: 'Games',
+    dataKey: 'games',
+    label: 'Picks',
     width: 100
 }, {
-    datakey: 'bans',
+    dataKey: 'bans',
     label: 'Bans',
     width: 100
 }, {
-    datakey: 'winner',
+    dataKey: 'relevance',
+    label: 'Pick/Ban %',
+    width: 110
+}, {
+    dataKey: 'winner',
     label: 'Win %',
     width: 100
 }, {
-    datakey: 'matchDuration',
+    dataKey: 'matchDuration',
     label: 'AVG Time',
     width: 100
 }, {
-    datakey: 'kills',
+    dataKey: 'kills',
     label: 'AVG Kills',
     width: 100
 }, {
-    datakey: 'deaths',
+    dataKey: 'deaths',
     label: 'AVG Deaths',
     width: 110
 }, {
-    datakey: 'assists',
+    dataKey: 'assists',
     label: 'AVG Assists',
     width: 115
 }, {
-    datakey: 'champLevel',
+    dataKey: 'champLevel',
     label: 'AVG Level',
     width: 100
 }, {
-    datakey: 'goldEarned',
+    dataKey: 'goldEarned',
     label: 'AVG Gold',
     width: 95
 }, {
-    datakey: 'minionsKilled',
+    dataKey: 'minionsKilled',
     label: 'AVG CS',
     width: 85
 }, {
-    datakey: 'towerKills',
+    dataKey: 'towerKills',
     label: 'AVG Towers',
     width: 115
 }, {
-    datakey: 'inhibitorKills',
+    dataKey: 'inhibitorKills',
     label: 'AVG Inhibs',
     width: 110
 }];
