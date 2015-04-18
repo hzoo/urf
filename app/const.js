@@ -16,12 +16,13 @@ export const urls = {
         return `${urls.base}${urls.version}/img/item/${itemId}.png`;
     },
     matchDetails: function(region, matchId) {
-        if (region === 'EUNE') region = 'EUN';
-        if (region === 'LAN') region = 'LA1';
-        if (region === 'LAS') region = 'LA2';
-        if (region === 'OCE') region = 'OC1';
+        var short = region;
+        if (region === 'EUNE') short = 'EUN';
+        if (region === 'LAN') short = 'LA1';
+        if (region === 'LAS') short = 'LA2';
+        if (region === 'OCE') short = 'OC1';
         return `http://matchhistory.${region}.leagueoflegends.com/` +
-        `en/#match-details/${region.toUpperCase()}1/${matchId}`;
+        `en/#match-details/${short.toUpperCase()}1/${matchId}`;
     }
 };
 export const toTitleCase = (str) => {
