@@ -1,6 +1,6 @@
-# [URF](http://urf.herokuapp.com/)
+[![Dependency Status](https://david-dm.org/hzoo/urf.svg?style=flat)](https://david-dm.org/hzoo/urf)
 
-URF Statistics. ([hzoo/geturf](https://github.com/hzoo/geturf) fetches data)
+[URF Statistics](http://urf.herokuapp.com/). ([hzoo/geturf](https://github.com/hzoo/geturf) fetches data)
 
 > Home
 ![](home.png)
@@ -9,6 +9,7 @@ URF Statistics. ([hzoo/geturf](https://github.com/hzoo/geturf) fetches data)
 ![](screenshot.png)
 
 Shows some top stats as well as a dashboard to look through.
+
 
 ## Install
 - [io.js], [MySQL] 5.6 (used [MySQL Workbench] to debug/test)
