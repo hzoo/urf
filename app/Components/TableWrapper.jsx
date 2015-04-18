@@ -10,7 +10,6 @@ var io = require('socket.io');
 require('fixed-data-table/dist/fixed-data-table.min.css');
 
 import SquareImage from './SquareImage.jsx';
-import NumericComponent from '../Components/NumericComponent.jsx';
 
 const ImageWrapper = React.createClass({
     render: function() {
@@ -30,10 +29,6 @@ const ImageWrapper = React.createClass({
 const SortTypes = {
     ASC: 'ASC',
     DESC: 'DESC',
-};
-
-const renderNumericComponent = (data, key, rowData) => {
-    return <NumericComponent data={data} games={rowData.games} />;
 };
 
 const pluckAll = (array, props) => {
