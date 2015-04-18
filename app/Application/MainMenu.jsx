@@ -1,9 +1,10 @@
 const React = require("react");
 import {title} from '../const';
 const Link = require("react-router").Link;
+var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 
 const MainMenu = React.createClass({
-
+    mixins: [PureRenderMixin],
     componentDidMount: function() {
          $(".button-collapse").sideNav({
              closeOnClick: true
