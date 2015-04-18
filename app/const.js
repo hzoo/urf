@@ -30,6 +30,18 @@ export const toTitleCase = (str) => {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 };
+export const formatNumber = (num) => {
+    // fixed to 2 digits, but drop trailing zeros
+    if (num >= 1e9) {
+        return Number((num / 1e9).toFixed(2)) + 'b';
+    } else if (num >= 1e6) {
+        return Number((num / 1e6).toFixed(2)) + 'm';
+    } else if (num >= 1e3) {
+        return Number((num / 1e3).toFixed(2)) + 'k';
+    } else {
+        return num;
+    }
+};
 export const championNames = {
     "Shaco": "Shaco",
     "DrMundo": "Dr. Mundo",

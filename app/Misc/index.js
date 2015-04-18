@@ -2,15 +2,25 @@ const React = require('react');
 const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 const TableWrapper = require('../Components/TableWrapper');
 const SquareImage = require('../Components/SquareImage');
-import {rand, urls, numSkins, championNames} from '../const';
+import {formatNumber, rand, urls, numSkins, championNames} from '../const';
 import {miscItemsData} from './Data';
 
 const Card = React.createClass({
     mixins: [PureRenderMixin],
+    getInitialState: function() {
+        return {
+            height: 350
+        }
+    },
+    componentDidMount: function() {
+        this.setState({
+            height: this.refs.cardContent.getDOMNode().offsetHeight
+        });
+    },
     render: function() {
         const championName = String(this.props.data[0].championName);
         const statName = String(this.props.stat);
-        const height = this.props.height;
+        const height = this.state.height;
 
         const itemImageRender = this.props.itemImage ?
         (<div style={{
@@ -27,11 +37,11 @@ const Card = React.createClass({
             var region = obj.region;
             var url = region ? urls.matchDetails(region, matchId) : '';
             return (
-              <p key={i} style={{display: 'flex', alignItems: 'center', padding: '3'}}>
-                <SquareImage champion={name} size={'60'} circle={true}></SquareImage>
-                <a href={url}>
-                    <span style={{marginLeft: '4', fontSize: '18'}} className="title">
-                        {championNames[name]}: {Number(stat).toFixed(2)} {`(${otherStat})`}
+              <p key={i} style={{display: 'flex', alignItems: 'center', marginBottom: 5}}>
+                <SquareImage champion={name} size={'60'} circle={true} flex={true}></SquareImage>
+                <a href={url} style={{marginLeft: 5}}>
+                    <span style={{fontSize: '18'}} className="title">
+                        {championNames[name]}: {Number(stat).toFixed(2)} {`(${formatNumber(otherStat)})`}
                     </span>
                 </a>
               </p>
@@ -49,11 +59,8 @@ const Card = React.createClass({
                         flex: '1'
                     }}>
                       <div style={{
-                        backgroundImage: `url(${urls.splash(championName, rand(numSkins[championName]))})`,
-                        overflowX: 'hidden',
-                        overflowY: 'hidden',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center top',
+                        background: `url(${urls.splash(championName, rand(numSkins[championName]))}) no-repeat center center`,
+                        backgroundSize: 'cover',
                         height: height
                       }}></div>
                       <span className="card-title">
@@ -61,7 +68,7 @@ const Card = React.createClass({
                         {statName}
                       </span>
                     </div>
-                    <div className="card-content" style={{flex: '0 0 270px'}}>
+                    <div ref="cardContent" className="card-content" style={{flex: '0 0 270px'}}>
                         {list}
                     </div>
                   </div>
@@ -89,13 +96,12 @@ const mostXBoughtPerMatch = (id) => `
 module.exports = React.createClass({
     render: function() {
         return (
-            <div>
+            <div style={{marginTop: 20, marginBottom: -20}}>
                 {miscItemsData.map((card, i) => {
                     return <Card key={i}
                     stat={card.stat}
                     titleImage={card.titleImage}
                     data={card.data}
-                    height='350'
                     />;
                 })}
             </div>

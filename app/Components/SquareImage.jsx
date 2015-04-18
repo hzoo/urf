@@ -12,6 +12,11 @@ const SquareImage = React.createClass({
 
     let input;
     let getUrl;
+    let style = {};
+
+    if (this.props.flex) {
+        style.flex = `0 0 ${size}px`;
+    }
 
     if (championName) {
         input = championName;
@@ -28,6 +33,7 @@ const SquareImage = React.createClass({
 
     return (
       <img
+        style={style}
         className={classes}
         src={imgUrl}
         height={size || '120'}
