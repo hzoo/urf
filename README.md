@@ -2,8 +2,13 @@
 
 URF Statistics. ([hzoo/geturf](https://github.com/hzoo/geturf) fetches data)
 
+> Home
+![](home.png)
+
+> Table
 ![](screenshot.png)
 
+Shows some top stats as well as a dashboard to look through.
 
 ## Install
 - io.js, MySQL 5.6

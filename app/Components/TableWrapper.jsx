@@ -15,7 +15,7 @@ import NumericComponent from '../Components/NumericComponent.jsx';
 const ImageWrapper = React.createClass({
     render: function() {
         return (
-            <div style={{display: 'flex', alignItems: 'center'}}>
+            <div style={{display: 'flex', alignItems: 'center', marginLeft: 2}}>
                 <SquareImage
                     champion={this.props.data}
                     size={'42'}
@@ -134,17 +134,19 @@ var TableWrapper = React.createClass({
 
         var table = (
             <Table
+                style={{margin: 'auto'}}
                 rowHeight={50}
                 headerHeight={40}
                 rowGetter={this._rowGetter}
                 rowsCount={this.state.filteredRows.length}
                 width={1280}
                 height={720}>
-                {this.props.table.map((column) => {
+                {this.props.table.map((column, i) => {
                     var createImage = (data) => <ImageWrapper data={data} />;
                     var image = column.image ? createImage : null;
                     return (
                         <Column
+                            key={i}
                             cellRenderer={image}
                             headerRenderer={this._renderHeader}
                             label={column.label + (this.state.sortBy === column.dataKey ? sortDirArrow : '')}

@@ -20,14 +20,12 @@ const MainMenu = React.createClass({
                     <i className="mdi-navigation-menu"></i>
                 </a>
                 <ul className="right hide-on-med-and-down">
-                  <Link to="table">
-                      <span>Table</span>
-                  </Link>
+                  <li><Link to="home"><span>Home</span></Link></li>
+                  <li><Link to="table"><span>Table</span></Link></li>
                 </ul>
                 <ul className="side-nav" id="mobile-demo">
-                  <Link to="table">
-                      <span>Table</span>
-                  </Link>
+                  <li><Link to="home"><span>Home</span></Link></li>
+                  <li><Link to="table"><span>Table</span></Link></li>
                 </ul>
             </span>
         );
