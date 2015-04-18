@@ -5,8 +5,21 @@ var cx = require('classnames');
 const SquareImage = React.createClass({
   render: function() {
     const championName = this.props.champion;
+    const itemId = this.props.item;
     const size = this.props.size;
-    const imgUrl = urls.square(championName);
+
+    let input;
+    let getUrl;
+
+    if (championName) {
+        input = championName;
+        getUrl = urls.square;
+    } else {
+        input = itemId;
+        getUrl = urls.item;
+    }
+
+    const imgUrl = getUrl(input);
     const classes = cx({
         circle: this.props.circle
     });

@@ -69,3 +69,4 @@ http://localhost:8081/
 - Flux -> nothing
 - jsbin/fiddle (testing) -> a lot of react-hot-loader starter kits -> webpack/react-starter
 - [Griddle](https://griddlegriddle.github.io/Griddle/) and many others from http://react.rocks/tag/DataTable -> Fixed-Data-Table (fast, customizable)
+- Failed on `totalHeal, trueDamageX` since I used a SMALLINT.

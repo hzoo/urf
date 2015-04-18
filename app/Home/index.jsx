@@ -18,7 +18,7 @@ const Card = React.createClass({
             var matchId = obj[2];
             var region = obj[3];
             return (
-              <p key={i} style={{display: 'flex', alignItems: 'center', padding: '3', flex: '0 0 250px'}}>
+              <p key={i} style={{display: 'flex', alignItems: 'center', padding: '3'}}>
                 <SquareImage champion={name} size={'60'} circle={true}></SquareImage>
                 <a href={urls.matchDetails(region, matchId)}>
                     <span style={{marginLeft: '4', fontSize: '18'}} className="title">{championNames[name]}: {stat}</span>
@@ -43,11 +43,11 @@ const Card = React.createClass({
                         overflowY: 'hidden',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center top',
-                        height: '250px'
+                        height: '260px'
                       }}></div>
                       <span className="card-title">{statName}</span>
                     </div>
-                    <div className="card-content">
+                    <div className="card-content" style={{flex: '0 0 270px'}}>
                         {list}
                     </div>
                   </div>
@@ -56,6 +56,15 @@ const Card = React.createClass({
         );
     }
 });
+
+// mostX(kills, 'DESC')
+const mostX = (stat, sort) => `
+    SELECT championName, players.${stat} as stat, players.matchId, players.region
+    FROM players, champions
+    WHERE players.championId = champions.championId
+    ORDER BY stat ${sort}
+    LIMIT 10
+`;
 
 const cards = [
     {
@@ -67,7 +76,7 @@ const cards = [
         ]
     },
     {
-        stat: 'Most Deaths (most troll)',
+        stat: 'Most Deaths',
         data: [
             ['Nidalee', '55', '1143315106', 'EUNE'],
             ['Ezreal', '53', '2043620033', 'EUW'],
@@ -194,7 +203,55 @@ const cards = [
             ['Nidalee', '2', '1143673203', 'EUNE'],
             ['Katarina', '2', '85069796', 'OCE']
         ]
-    }
+    },
+    {
+        stat: 'Most Magic Damage Dealt',
+        data: [
+            ['Azir', '1696495', '2041661008', 'EUW'],
+            ['Ziggs', '1431647', '2041661008', 'EUW'],
+            ['Kennen', '1091161', '1136904616', 'EUNE']
+        ]
+    },
+    {
+        stat: 'Most Physical Damage Dealt',
+        data: [
+            ['Rengar', '1261314', '2041661008', 'EUW'],
+            ['Darius', '1244568', '1136904616', 'EUNE'],
+            ['Nasus', '1244044', '2056588763', 'EUW']
+        ]
+    },
+    {
+        stat: 'Most Time Dealing Crowd Control',
+        data: [
+            ['Malphite', '32695', '2048961306', 'EUW'],
+            ['Alistar', '26624', '1781458768', 'NA'],
+            ['Alistar', '23733', '1781119176', 'NA']
+        ]
+    },
+    {
+        stat: 'Highest Critical Strike',
+        data: [
+            ['Nasus', '6951', '2056588763', 'EUW'],
+            ['Nasus', '6116', '2042078779', 'EUW'],
+            ['Nasus', '6090', '2054019587', 'EUW']
+        ]
+    },
+    {
+        stat: 'Most Physical Damage Taken',
+        data: [
+            ['DrMundo', '162960', '1139615671', 'EUNE'],
+            ['Sion', '150020', '1779883407', 'NA'],
+            ['MasterYi', '147389', '2041661008', 'EUW']
+        ]
+    },
+    {
+        stat: 'Most Magical Damage Taken',
+        data: [
+            ['DrMundo', '233849', '85355996', 'OCE'],
+            ['DrMundo', '173636', '1142124806', 'EUNE'],
+            ['DrMundo', '171000', '84738816', 'OCE']
+        ]
+    },
 ];
 
 module.exports = React.createClass({

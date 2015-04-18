@@ -13,6 +13,7 @@ module.exports = (
     <Route name="app" path="/" handler={require("./Application")}>
         <Route name="home" path="/home" handler={require("./Home")} />
         <Route name="table" path="/table" handler={require("./Table")} />
+        <Route name="misc" path="/misc" handler={require("./Misc")} />
         <DefaultRoute handler={require("./Home")} />
         <NotFoundRoute handler={require("./NotFound")} />
     </Route>

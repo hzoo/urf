@@ -12,6 +12,9 @@ export const urls = {
     square: function(championName) {
         return `${urls.base}${urls.version}/img/champion/${championName}.png`;
     },
+    item: function(itemId) {
+        return `${urls.base}${urls.version}/img/item/${itemId}.png`;
+    },
     matchDetails: function(region, matchId) {
         if (region === 'EUNE') region = 'EUN';
         if (region === 'LAN') region = 'LA1';
