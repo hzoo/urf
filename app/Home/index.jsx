@@ -67,7 +67,7 @@ module.exports = React.createClass({
         return (
             <div style={{marginTop: 20, marginBottom: -20}}>
                 <div className="row">
-                      <div className="card-panel grey">
+                      <div className="card-panel blue">
                         <h5 className="white-text center-align">
                             Games with the...
                         </h5>
