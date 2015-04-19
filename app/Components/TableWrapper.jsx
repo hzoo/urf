@@ -133,7 +133,6 @@ const TableWrapper = React.createClass({
 
         var table = (
             <Table
-
                 rowHeight={50}
                 headerHeight={50}
                 rowGetter={this._rowGetter}
@@ -160,7 +159,12 @@ const TableWrapper = React.createClass({
 
         return (
             <div>
-                <div className="col s12" style={{padding: '8', paddingBottom: '0'}}>
+                <div className="col s12" style={{
+                    padding: '8',
+                    paddingBottom: '0',
+                    margin: 'auto',
+                    width: '1280'
+                }}>
                     <div className="input-field">
                         <i className="mdi-action-search prefix"></i>
                         <input
