@@ -66,23 +66,23 @@ export const tableMetaData = [{
     width: 110
 }, {
     dataKey: 'doubleKills',
-    label: 'AVG DoubleKills',
+    label: 'DoubleKills',
     width: 110
 }, {
     dataKey: 'tripleKills',
-    label: 'AVG TripleKills',
+    label: 'TripleKills',
     width: 110
 }, {
     dataKey: 'quadraKills',
-    label: 'AVG QuadraKills',
+    label: 'QuadraKills',
     width: 110
 }, {
     dataKey: 'pentaKills',
-    label: 'AVG PentaKills',
+    label: 'PentaKills',
     width: 110
 }, {
     dataKey: 'unrealKills',
-    label: 'AVG UnrealKills',
+    label: 'UnrealKills',
     width: 110
 }, {
     dataKey: 'magicDamageDealt',
@@ -94,7 +94,7 @@ export const tableMetaData = [{
     width: 110
 }, {
     dataKey: 'physicalDamageDealt',
-    label: 'AVG AD DMG Taken',
+    label: 'AVG AD DMG',
     width: 110
 }, {
     dataKey: 'physicalDamageTaken',
