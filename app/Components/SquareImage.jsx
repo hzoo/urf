@@ -24,6 +24,7 @@ const SquareImage = React.createClass({
     } else {
         input = itemId;
         getUrl = urls.item;
+        style.margin = 'auto';
     }
 
     const imgUrl = getUrl(input);

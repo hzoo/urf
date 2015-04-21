@@ -2,7 +2,6 @@ const React = require('react');
 const FixedDataTable = require('fixed-data-table');
 const Table = FixedDataTable.Table;
 const Column = FixedDataTable.Column;
-const _ = require('lodash');
 const io = require('socket.io');
 import {championNames} from '../const';
 import SquareImage from './SquareImage.jsx';
@@ -11,13 +10,25 @@ require('fixed-data-table/dist/fixed-data-table.min.css');
 
 const ImageWrapper = React.createClass({
     render: function() {
+        var image;
+
+        if (this.props.item) {
+            image = <SquareImage
+                item={this.props.data}
+                size={'42'}
+                circle={true}>
+            </SquareImage>;
+        } else {
+            image = <SquareImage
+                champion={this.props.data}
+                size={'42'}
+                circle={true}>
+            </SquareImage>
+        }
+
         return (
             <div style={{display: 'flex', alignItems: 'center', marginLeft: 2}}>
-                <SquareImage
-                    champion={this.props.data}
-                    size={'42'}
-                    circle={true}>
-                </SquareImage>
+                {image}
                 <div style={{marginLeft: 4}}>{championNames[this.props.data]}</div>
             </div>
         );
@@ -27,10 +38,6 @@ const ImageWrapper = React.createClass({
 const SortTypes = {
     ASC: 'ASC',
     DESC: 'DESC',
-};
-
-const pluckAll = (array, props) => {
-    return _.map(array, function(obj) { return _.pick(obj, ...props); });
 };
 
 // https://github.com/facebook/fixed-data-table/issues/67
@@ -51,26 +58,7 @@ const TableWrapper = React.createClass({
     },
     componentDidMount: function() {
         if (this.state.rows.length === 0) {
-            this.socket.emit('c:dashboardQuery', {});
-            this.socket.on('s:dashboardQuery', (res) => {
-                if (this.isMounted()) {
-
-                    var metaData = this.props.table;
-                    var filteredResult = pluckAll(res, _.pluck(metaData, 'dataKey'));
-
-                    filteredResult.forEach((r) => {
-                        r.matchDuration = Math.floor(r.matchDuration);
-                        r.largestCriticalStrike = Math.floor(r.largestCriticalStrike);
-                        r.totalTimeCrowdControlDealt = Math.floor(r.totalTimeCrowdControlDealt);
-                    });
-
-                    this.setState({
-                        rows: filteredResult
-                    }, function() {
-                        this._filterRowsBy(this.state.filterBy);
-                    });
-                }
-            });
+            this.props.query.bind(this)();
         }
     },
     _rowGetter: function(rowIndex) {
@@ -140,8 +128,16 @@ const TableWrapper = React.createClass({
                 width={1280}
                 height={720}>
                 {this.props.table.map((column, i) => {
-                    var createImage = (data) => <ImageWrapper data={data} />;
-                    var image = column.image ? createImage : null;
+                    var image;
+
+                    if (column.champion) {
+                        image = (data) => <ImageWrapper data={data} />;
+                    } else if (column.item) {
+                        image = (data) => <ImageWrapper data={data} item={true} />;
+                    } else {
+                        image = null;
+                    }
+
                     return (
                         <Column
                             key={i}
