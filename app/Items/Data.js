@@ -6,7 +6,7 @@ export const tableMetaData = [{
     champion: true
 }, {
     dataKey: 'item1Name',
-    label: 'Item 1',
+    label: 'Item',
     item: true,
     width: 80
 }, {
@@ -15,7 +15,7 @@ export const tableMetaData = [{
     width: 100
 }, {
     dataKey: 'item2Name',
-    label: 'Item 2',
+    label: 'Item',
     item: true,
     width: 80
 }, {
@@ -24,7 +24,7 @@ export const tableMetaData = [{
     width: 100
 }, {
     dataKey: 'item3Name',
-    label: 'Item 3',
+    label: 'Item',
     item: true,
     width: 80
 }, {
@@ -33,7 +33,7 @@ export const tableMetaData = [{
     width: 100
 }, {
     dataKey: 'item4Name',
-    label: 'Item 4',
+    label: 'Item',
     item: true,
     width: 80
 }, {
@@ -42,7 +42,7 @@ export const tableMetaData = [{
     width: 98
 }, {
     dataKey: 'item5Name',
-    label: 'Item 5',
+    label: 'Item',
     item: true,
     width: 80
 }, {
@@ -51,7 +51,7 @@ export const tableMetaData = [{
     width: 100
 }, {
     dataKey: 'item6Name',
-    label: 'Item 6',
+    label: 'Item',
     item: true,
     width: 80
 }, {
