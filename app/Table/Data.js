@@ -3,7 +3,7 @@ export const tableMetaData = [{
     label: 'Champion',
     width: 140,
     fixed: true,
-    image: true
+    champion: true
 }, {
     dataKey: 'games',
     label: 'Picks',
