@@ -69,7 +69,7 @@ module.exports = React.createClass({
                 <div className="row">
                   <div className="card-panel blue">
                     <h6 className="white-text center-align">
-                        Matches with the...
+                        Single Matches with the...
                     </h6>
                   </div>
                 </div>

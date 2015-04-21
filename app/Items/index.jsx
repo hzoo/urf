@@ -34,7 +34,7 @@ module.exports = React.createClass({
                 <div className="row" style={{marginBottom: 0}}>
                   <div className="card-panel blue">
                     <h6 className="white-text center-align">
-                        Top 6 Items Bought
+                        Top 6 Items at Game End
                     </h6>
                   </div>
                 </div>
