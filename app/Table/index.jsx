@@ -10,7 +10,7 @@ function query() {
 
             var metaData = this.props.table;
             // var filteredResult = pluckAll(res, _.pluck(metaData, 'dataKey'));
-            const sumGames = res.map(r => r.games).reduce((a,b) => a + b);
+            const sumGames = res.map(r => r.games).reduce((a,b) => a + b) / 10;
 
             res.forEach((r) => {
                 r.popularity = Math.round(r.games / sumGames * 1e4) / 1e2;
