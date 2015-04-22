@@ -13,6 +13,14 @@ export const tableMetaData = [{
     label: 'Bans',
     width: 100
 }, {
+    dataKey: 'popularity',
+    label: 'Pick %',
+    width: 100
+}, {
+    dataKey: 'relevance',
+    label: 'Pick + Ban %',
+    width: 120
+}, {
     dataKey: 'winner',
     label: 'Win %',
     width: 100
